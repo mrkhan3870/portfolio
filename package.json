@@ -1,0 +1,13 @@
+{
+  "name": "proxy-portfolio",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "concurrently --names \"frontend,backend\" --prefix-colors \"cyan,yellow\" \"pnpm --filter frontend dev\" \"pnpm --filter backend dev\"",
+    "build": "pnpm --filter frontend build && pnpm --filter backend build",
+    "lint": "pnpm --filter frontend lint"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
