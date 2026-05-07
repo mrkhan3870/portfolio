@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-slate-900 antialiased;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-teal-600;
+  }
+}
+
+/* ── Wellness marquee ─────────────────────────────────────── */
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 30s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* teal color-mask applied to partner logos */
+.logo-teal {
+  filter: invert(45%) sepia(80%) saturate(500%) hue-rotate(145deg) brightness(85%);
+}
+
+/* ── EdTech promo banner marquee ──────────────────────────── */
+@keyframes promo-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.promo-track {
+  display: flex;
+  width: max-content;
+  animation: promo-scroll 20s linear infinite;
+}
+
+.promo-track:hover {
+  animation-play-state: paused;
+}
+
+/* ── Scroll snap ──────────────────────────────────────────── */
+.snap-x-mandatory {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.snap-start {
+  scroll-snap-align: start;
+}
+
+/* ── Stacking context bug demo ────────────────────────────── */
+.demo-broken-card {
+  position: relative;
+  isolation: auto;
+}
+
+.demo-broken-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(124, 58, 237, 0.15);
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.demo-fixed-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.demo-fixed-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(124, 58, 237, 0.15);
+  z-index: -1;
+  pointer-events: none;
+}
